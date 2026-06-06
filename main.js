@@ -157,15 +157,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const next = document.getElementById("next");
     const prev = document.getElementById("prev");
 
-    function getleftwidth() {
-        return window.innerWidth <= 767 ? 420 : window.innerWidth <= 1024 ? 400 : 420;
-    }
-
     if (slider && next && prev) {
-        next.addEventListener("click", () => slider.scrollBy({ left: getleftwidth(), behavior: "smooth" }));
-        prev.addEventListener("click", () => slider.scrollBy({ left: -(getleftwidth()), behavior: "smooth" }));
-        // next.addEventListener("click", () => slider.scrollBy({ left: 420, behavior: "smooth" }));
-        // prev.addEventListener("click", () => slider.scrollBy({ left: -420, behavior: "smooth" }));
+        next.addEventListener("click", () => slider.scrollBy({ left: 420, behavior: "smooth" }));
+        prev.addEventListener("click", () => slider.scrollBy({ left: -420, behavior: "smooth" }));
     }
 });
 
