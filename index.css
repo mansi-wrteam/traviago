@@ -445,7 +445,7 @@ a {
 .home {
     position: relative;
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     margin-top: -70px;
     padding-top: 70px;
     overflow: hidden;
@@ -1914,11 +1914,17 @@ a {
         background-color: #ffffff;
     }
 
+    .home {
+        min-height: auto;
+        aspect-ratio: 1/1.85;
+    }
+
     /* Hero */
     .text1 {
         font-size: 16px;
         line-height: 20px;
         padding: 0 28px;
+        margin-bottom: 12px;
     }
 
     .text2 {
@@ -1997,7 +2003,7 @@ a {
 
     /* Destinations */
     .destinations {
-        padding-top: 100px;
+        padding-top: 130px;
     }
 
     .destinations-cards {
@@ -2153,7 +2159,6 @@ a {
     .testimonial .testimonial-content .heading {
         font-size: 30px;
         line-height: 38px;
-        text-align: center;
     }
 
     .testimonial .testimonial-content .sub-heading {
@@ -2266,7 +2271,6 @@ a {
         margin-top: 0;
     }
 
-    /* Footer accordion on mobile */
     .footer .column .heading {
         display: flex;
         justify-content: space-between;
@@ -2274,8 +2278,6 @@ a {
         cursor: pointer;
         margin-bottom: 0;
         font-size: 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid #2c313b;
     }
 
     .footer .column .heading i {
@@ -2292,7 +2294,6 @@ a {
     .footer .column ul,
     .footer .column .newsletter-text,
     .footer .column .newsletter {
-        display: none;
         margin-top: 16px;
     }
 

@@ -209,45 +209,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-// ========================================
-// Footer — Mobile Accordion
-// ========================================
-document.addEventListener('DOMContentLoaded', function () {
-    function initFooterAccordion() {
-        if (window.innerWidth > 767) return;
-
-        document.querySelectorAll('.footer .column .heading').forEach(heading => {
-            heading.addEventListener('click', function () {
-                const isOpen = this.classList.contains('open');
-
-                document.querySelectorAll('.footer .column .heading').forEach(h => {
-                    h.classList.remove('open');
-                    h.parentElement.querySelectorAll('ul, .newsletter-text, .newsletter').forEach(el => {
-                        el.classList.remove('open');
-                    });
-                });
-
-                if (!isOpen) {
-                    this.classList.add('open');
-                    this.parentElement.querySelectorAll('ul, .newsletter-text, .newsletter').forEach(el => {
-                        el.classList.add('open');
-                    });
-                }
-            });
-        });
-    }
-
-    initFooterAccordion();
-
-    window.addEventListener('resize', function () {
-        document.querySelectorAll('.footer .column ul, .footer .column .newsletter-text, .footer .column .newsletter').forEach(el => {
-            el.classList.remove('open');
-        });
-        document.querySelectorAll('.footer .column .heading').forEach(h => h.classList.remove('open'));
-    });
-});
-
 // ========================================
 // Active Nav Link
 // ========================================
