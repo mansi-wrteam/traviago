@@ -222,10 +222,11 @@ a {
     max-width: var(--container-width);
     margin: 0 auto;
     position: relative;
-    top: 10px;
+    top: 0;
 }
 
 .navbar__logo {
+    margin-left: 8px;
     display: block;
     width: 138px;
     height: 40px;
@@ -432,7 +433,18 @@ a {
     height: 100%;
 }
 
-.mySlides .background_image {
+.mySlides .background-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        linear-gradient(180deg, rgba(32, 35, 38, 0.35) 9.63%, rgba(32, 35, 38, 0) 38.5%);
+    opacity: 1;
+}
+
+.mySlides .background-image {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1177,7 +1189,7 @@ a {
 
 .testimonial .container {
     display: flex;
-    gap: 50px;
+    gap: 30px;
     align-items: stretch;
 }
 
@@ -1580,6 +1592,14 @@ a {
         display: none;
     }
 
+    .navbar__container {
+        top: 10px;
+    }
+
+    .navbar__logo {
+        margin-left: 0;
+    }
+
     .navbar__overlay {
         display: none !important;
     }
@@ -1684,6 +1704,10 @@ a {
         padding: 0 10px;
     }
 
+    .navbar__container {
+        padding-inline: 10px;
+    }
+
     .text1 {
         font-size: 24px;
         line-height: 32px;
@@ -1729,9 +1753,22 @@ a {
         height: auto;
     }
 
+    .steps .content .text .step-container {
+        margin-top: 30px;
+    }
+
+    .steps .step-text {
+        gap: 6px;
+    }
+
     .trending .image-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+    }
+
+    .trending .heading .text {
+        max-width: var(--container-width);
+        text-align: start;
     }
 
     .trending .image-grid-item,
@@ -1798,6 +1835,11 @@ a {
         line-height: 22px;
     }
 
+    .view-all-button {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
     /* Hero */
     .text1 {
         font-size: 16px;
@@ -1826,7 +1868,7 @@ a {
         right: 8px;
     }
 
-    .home .background_image {
+    .home .background-image {
         object-position: center top;
     }
 
@@ -1881,7 +1923,7 @@ a {
 
     /* Destinations */
     .destinations {
-        padding-top: 80px;
+        padding-top: 100px;
     }
 
     .destinations-cards {
@@ -1913,15 +1955,15 @@ a {
     }
 
     .steps .step-text .header-text {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 24px;
         font-weight: var(--font-bold);
         color: var(--color-text);
     }
 
     .steps .step-text .sub-text {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 22px;
         color: var(--color-text);
     }
 
@@ -1931,8 +1973,8 @@ a {
     }
 
     .steps .step-icon {
-        width: 62px;
-        height: 62px;
+        width: 56px;
+        height: 56px;
         font-size: 28px;
     }
 
@@ -1979,9 +2021,18 @@ a {
         margin-top: 28px;
     }
 
+    .tours .title-row span {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
     /* Trending */
     .trending {
         padding-block-start: 50px;
+    }
+
+    .trending .heading .text {
+        text-align: start;
     }
 
     .trending .image-grid {
@@ -2093,8 +2144,15 @@ a {
         gap: 0;
     }
 
+    .blog .title-row span {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
     .blog .read-more {
-        margin-top: 30px;
+        margin-top: 28px;
+        font-size: 16px;
+        line-height: 24px;
     }
 
     /* Footer */
@@ -2104,12 +2162,30 @@ a {
 
     .footer .footer-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 22px;
     }
 
     .footer .footer-about {
-        padding-top: 24px;
+        padding-top: 14px;
         padding-bottom: 0;
+    }
+
+    .footer .footer-about .footer-description {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .footer .social-icons {
+        gap: 20px;
+    }
+
+    .footer .social-icons i {
+        font-size: 20px;
+    }
+
+    .footer .social-icons a {
+        width: 36px;
+        height: 36px;
     }
 
     .footer .column {
@@ -2123,7 +2199,7 @@ a {
         align-items: center;
         cursor: pointer;
         margin-bottom: 0;
-        font-size: 18px;
+        font-size: 16px;
         padding-bottom: 16px;
         border-bottom: 1px solid #2c313b;
     }
@@ -2157,13 +2233,20 @@ a {
         display: flex;
     }
 
+    .footer ul li a {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
     .footer .footer-bottom {
         flex-direction: column;
         text-align: center;
         padding: 10px 0;
     }
 
-    .footer .footer-bottom .copyright, .footer .footer-bottom a, .footer .footer-bottom span {
+    .footer .footer-bottom .copyright,
+    .footer .footer-bottom a,
+    .footer .footer-bottom span {
         margin: 0 6px;
         font-size: 14px;
         line-height: 22px;
