@@ -141,6 +141,33 @@ a {
     cursor: not-allowed;
 }
 
+.slideshow-dots,
+.slider-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.slideshow-dots .dot,
+.slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-border);
+    cursor: pointer;
+    transition: background-color var(--transition) ease, transform var(--transition) ease, width var(--transition) ease;
+    flex-shrink: 0;
+}
+
+.slideshow-dots .dot.active,
+.slider-dots .dot.active {
+    background-color: var(--color-primary);
+    width: 22px;
+    border-radius: 4px;
+}
+
 .card-base {
     width: 100%;
     background: #fff;
@@ -226,7 +253,6 @@ a {
 }
 
 .navbar__logo {
-    margin-left: 8px;
     display: block;
     width: 138px;
     height: 40px;
@@ -237,6 +263,13 @@ a {
 .navbar.home-navbar .navbar__link,
 .navbar.home-navbar .navbar__link--cta {
     color: #ffffff;
+}
+
+.navbar__link.active,
+.home-navbar .navbar__link.active {
+    font-weight: 700;
+    line-height: 19px;
+    color: var(--color-primary) !important;
 }
 
 .navbar.home-navbar .navbar__toggle .bar {
@@ -412,7 +445,7 @@ a {
 .home {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     margin-top: -70px;
     padding-top: 70px;
     overflow: hidden;
@@ -436,9 +469,6 @@ a {
 .mySlides .background-overlay {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         linear-gradient(180deg, rgba(32, 35, 38, 0.35) 9.63%, rgba(32, 35, 38, 0) 38.5%);
     opacity: 1;
@@ -1102,6 +1132,13 @@ a {
 .trending .heading .text {
     max-width: 870px;
     text-align: center;
+}
+
+.trending .trending-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50.16%, rgba(0, 0, 0, 0.76) 92.67%);
+    opacity: 1;
 }
 
 .trending .image-grid {
@@ -1840,17 +1877,54 @@ a {
         line-height: 24px;
     }
 
+    .prev,
+    .next {
+        display: none !important;
+    }
+
+    .destinations .heading .arrows,
+    .tours .heading .arrows,
+    .blog .heading .arrows {
+        display: none !important;
+    }
+
+    .slideshow-dots,
+    .slider-dots {
+        display: flex;
+    }
+
+    .slideshow-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    .home .slideshow-dots {
+        bottom: 40px;
+    }
+
+    .slideshow-dots .dot {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .slideshow-dots .dot.active {
+        background-color: #ffffff;
+    }
+
     /* Hero */
     .text1 {
         font-size: 16px;
         line-height: 20px;
-        padding: 0 8px;
+        padding: 0 28px;
     }
 
     .text2 {
         font-size: 28px;
         line-height: 34px;
-        padding: 0 48px;
+        padding: 0 0;
     }
 
     .prev,
@@ -2251,14 +2325,4 @@ a {
         font-size: 14px;
         line-height: 22px;
     }
-}
-
-/* ========================================
-   Active Nav Link
-   ======================================== */
-.navbar__link.active,
-.home-navbar .navbar__link.active {
-    font-weight: 700;
-    line-height: 19px;
-    color: var(--color-primary) !important;
 }

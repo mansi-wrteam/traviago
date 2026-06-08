@@ -153,9 +153,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // Tours Slider
 // ========================================
 document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.getElementById("slider");
-    const next = document.getElementById("next");
-    const prev = document.getElementById("prev");
+    const slider = document.getElementById("toursSlider");
+    const next = document.getElementById("toursNext");
+    const prev = document.getElementById("toursPrev");
 
     if (slider && next && prev) {
         next.addEventListener("click", () => slider.scrollBy({ left: 420, behavior: "smooth" }));
@@ -291,4 +291,141 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', updateActiveLink, { passive: true });
     updateActiveLink();
+});
+
+// ========================================
+// Mobile Dot Navigation
+// ========================================
+document.addEventListener('DOMContentLoaded', function () {
+
+    function isMobile() { return window.innerWidth <= 767; }
+
+    // ============== Home =================
+    (function HomeDots() {
+        const dotsContainer = document.getElementById('slideshowDots');
+        if (!dotsContainer) return;
+
+        const slides = document.getElementsByClassName('mySlides');
+        const total = slides.length;
+
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => { currentSlide(i + 1); syncHomeDots(i); });
+            dotsContainer.appendChild(dot);
+        }
+
+        const originalShowSlides = window.showSlides;
+        window.showSlides = function (n) {
+            originalShowSlides(n);
+            syncHomeDots(slideIndex - 1);
+        };
+
+        function syncHomeDots(activeIdx) {
+            if (!isMobile()) return;
+            Array.from(dotsContainer.children).forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeIdx);
+            });
+        }
+    })();
+
+    // ============== Destinations =================
+    (function DestinationsDots() {
+        const dotsContainer = document.getElementById('destinationDots');
+        const track = document.querySelector('.destinations-cards');
+        if (!dotsContainer || !track) return;
+
+        const items = Array.from(track.children);
+        const gap = 16;
+
+        function getVisibleCount() {
+            return window.innerWidth <= 767 ? 2 : window.innerWidth <= 1024 ? 5 : 6;
+        }
+
+        function getTotalPages() {
+            return Math.ceil(items.length / getVisibleCount());
+        }
+
+        function buildDots() {
+            dotsContainer.innerHTML = '';
+            const pages = getTotalPages();
+            for (let i = 0; i < pages; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    const itemWidth = items[0].getBoundingClientRect().width;
+                    const visibleCount = getVisibleCount();
+                    track.scrollTo({ left: i * visibleCount * (itemWidth + gap), behavior: 'smooth' });
+                    syncDots(dotsContainer, i);
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        buildDots();
+
+        track.addEventListener('scroll', function () {
+            if (!isMobile() || !items.length) return;
+            const itemWidth = items[0].getBoundingClientRect().width;
+            const visibleCount = getVisibleCount();
+            const pageWidth = visibleCount * (itemWidth + gap);
+            const page = Math.round(track.scrollLeft / pageWidth);
+            syncDots(dotsContainer, page);
+        });
+
+        window.addEventListener('resize', buildDots);
+    })();
+
+    // ============== Tours =================
+    (function ToursDots() {
+        const dotsContainer = document.getElementById('toursDots');
+        const slider = document.getElementById('toursSlider');
+        if (!dotsContainer || !slider) return;
+
+        const cards = Array.from(slider.children);
+
+        function getVisibleCount() {
+            return window.innerWidth <= 767 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+        }
+
+        function getTotalPages() {
+            return Math.ceil(cards.length / getVisibleCount());
+        }
+
+        function buildDots() {
+            dotsContainer.innerHTML = '';
+            const pages = getTotalPages();
+            for (let i = 0; i < pages; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    const cardWidth = cards[0] ? cards[0].getBoundingClientRect().width + 24 : 420;
+                    slider.scrollTo({ left: i * getVisibleCount() * cardWidth + (i * 5.5), behavior: 'smooth' });
+                    syncDots(dotsContainer, i);
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        buildDots();
+
+        slider.addEventListener('scroll', function () {
+            if (!isMobile() || !cards.length) return;
+            const cardWidth = cards[0].getBoundingClientRect().width + 24;
+            const visibleCount = getVisibleCount();
+            const page = Math.round(slider.scrollLeft / (cardWidth * visibleCount));
+            syncDots(dotsContainer, page);
+        });
+
+        window.addEventListener('resize', buildDots);
+    })();
+
+    function syncDots(container, activeIdx) {
+        Array.from(container.children).forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIdx);
+        });
+    }
 });
