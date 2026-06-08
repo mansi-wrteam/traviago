@@ -674,7 +674,7 @@ a {
     object-fit: cover;
     display: block;
     border-radius: 12px;
-    transition: transform 0.35s ease;
+    transition: transform var(--transition) ease;
 }
 
 .destinations-cards .card:hover .card-image {
@@ -689,7 +689,7 @@ a {
     justify-content: center;
     background: rgba(0, 0, 0, 0);
     opacity: 0;
-    transition: background 0.25s ease, opacity 0.25s ease;
+    transition: background var(--transition) ease, opacity var(--transition) ease;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 12px;
@@ -719,7 +719,7 @@ a {
     font-size: 32px;
     opacity: 0;
     transform: translateY(8px) scale(0.95);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity var(--transition) ease, transform var(--transition) ease;
     pointer-events: none;
     rotate: -50deg;
 }
@@ -2131,7 +2131,7 @@ a {
     .footer .column .heading i {
         display: block;
         font-size: 22px;
-        transition: transform 0.3s ease;
+        transition: transform var(--transition) ease;
         flex-shrink: 0;
     }
 
